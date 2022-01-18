@@ -5,14 +5,10 @@ import org.aeonbits.owner.Config;
 @Config.Sources({"classpath:mobile.properties"})
 public interface MobileConfig extends Config {
 
-    String username();
+    String user();
 
-    String password();
+    String key();
 
-    String appUrl();
-
-    String remoteUrl();
-
-    String videoUrl();
+    String url();
 
 }
