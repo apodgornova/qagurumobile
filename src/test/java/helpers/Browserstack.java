@@ -10,18 +10,20 @@ public class Browserstack {
     public static String videoUrl(String sessionId) {
 
         MobileConfig mobileConfig = ConfigFactory.create(MobileConfig.class);
-        String username = mobileConfig.user();
-        String password = mobileConfig.key();
-        String videoUrl = mobileConfig.url();
+
+        String user = mobileConfig.user();
+        String key = mobileConfig.key();
 
         return given()
-                .auth().basic(username, password)
+                .auth().basic(user, key)
                 .when()
-                .get(videoUrl + sessionId + ".json")
+                .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId + ".json")
                 .then()
                 .statusCode(200)
                 .log().body()
                 .extract()
+                .response()
                 .path("automation_session.video_url");
+
     }
 }
